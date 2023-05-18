@@ -3,11 +3,4 @@ function Main()
 	print("logic start")	 		
 end
 
---场景切换通知
-function OnLevelWasLoaded(level)
-	collectgarbage("collect")
-	Time.timeSinceLevelLoad = 0
-end
-
-function OnApplicationQuit()
-end
+Main()
