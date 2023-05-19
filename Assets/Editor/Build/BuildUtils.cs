@@ -251,7 +251,7 @@ public class BuildUtils
             {
                 if (!luaFile.EndsWith(".lua")) continue;
 
-                var md5 = LuaFramework.Util.md5file(luaFile);
+                var md5 = VinceFramework.Util.md5file(luaFile);
                 var key = luaFile.Substring(luaFile.IndexOf("Assets/"));
                 jd[key] = md5;
             }

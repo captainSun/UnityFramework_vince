@@ -12,7 +12,7 @@ using System.Xml;
 using UnityEditor;
 #endif
 
-namespace LuaFramework
+namespace VinceFramework
 {
     public class Util
     {

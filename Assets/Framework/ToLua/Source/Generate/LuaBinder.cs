@@ -192,8 +192,8 @@ public static class LuaBinder
 		L.EndModule();
 		L.EndModule();
 		L.EndModule();
-		L.BeginModule("LuaFramework");
-		LuaFramework_AppConstWrap.Register(L);
+		L.BeginModule("VinceFramework");
+		VinceFramework_AppConstWrap.Register(L);
 		L.EndModule();
 		L.BeginModule("System");
 		L.RegFunction("Action", System_Action);
