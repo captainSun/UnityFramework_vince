@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace VinceFramework
 {
-    public class AppCore : MonoBehaviour
+    public class AppCore 
     {
         private static AppCore _instance;
         public static AppCore Instance
@@ -34,7 +34,6 @@ namespace VinceFramework
                     if(m_GameManager == null)
                     {
                         m_GameManager = new GameObject("GameManager");
-                        DontDestroyOnLoad(m_GameManager);
                     }
                 }
                 return m_GameManager;
