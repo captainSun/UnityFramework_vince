@@ -21,7 +21,6 @@ public static class LuaBinder
 		UnityEngine_TrailRendererWrap.Register(L);
 		UnityEngine_CanvasGroupWrap.Register(L);
 		UnityEngine_RectTransformWrap.Register(L);
-		UnityEngine_AudioSourceWrap.Register(L);
 		UnityEngine_Rigidbody2DWrap.Register(L);
 		UnityEngine_SpriteRendererWrap.Register(L);
 		UnityEngine_BehaviourWrap.Register(L);
@@ -70,7 +69,6 @@ public static class LuaBinder
 		UnityEngine_RandomWrap.Register(L);
 		UnityEngine_RectTransformUtilityWrap.Register(L);
 		UnityEngine_TextMeshWrap.Register(L);
-		UnityEngine_AudioBehaviourWrap.Register(L);
 		L.BeginModule("UI");
 		UnityEngine_UI_GraphicWrap.Register(L);
 		UnityEngine_UI_ImageWrap.Register(L);
@@ -210,7 +208,6 @@ public static class LuaBinder
 		L.EndModule();
 		L.EndModule();
 		L.BeginPreLoad();
-		L.AddPreLoad("UnityEngine.MeshRenderer", LuaOpen_UnityEngine_MeshRenderer, typeof(UnityEngine.MeshRenderer));
 		L.AddPreLoad("UnityEngine.BoxCollider", LuaOpen_UnityEngine_BoxCollider, typeof(UnityEngine.BoxCollider));
 		L.AddPreLoad("UnityEngine.MeshCollider", LuaOpen_UnityEngine_MeshCollider, typeof(UnityEngine.MeshCollider));
 		L.AddPreLoad("UnityEngine.SphereCollider", LuaOpen_UnityEngine_SphereCollider, typeof(UnityEngine.SphereCollider));
@@ -1784,24 +1781,6 @@ public static class LuaBinder
 				Delegate arg1 = DelegateTraits<System.Action<UnityEngine.AsyncOperation>>.Create(func, self);
 				ToLua.Push(L, arg1);
 			}
-			return 1;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int LuaOpen_UnityEngine_MeshRenderer(IntPtr L)
-	{
-		try
-		{
-			LuaState state = LuaState.Get(L);
-			state.BeginPreModule("UnityEngine");
-			UnityEngine_MeshRendererWrap.Register(state);
-			int reference = state.GetMetaReference(typeof(UnityEngine.MeshRenderer));
-			state.EndPreModule(L, reference);
 			return 1;
 		}
 		catch(Exception e)

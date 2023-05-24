@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Linq;
 using LitJson;
+using VinceFramework;
 
 public class BuildUtils
 {
@@ -67,10 +69,10 @@ public class BuildUtils
     /// </summary>
     public static void BuildNormalCfgBundle(string targetPath)
     {
-        Hashtable tb = new Hashtable();
-        tb["normal_cfg.bundle"] = "GameRes/Config";
-        AssetBundleBuild[] buildArray = BuildUtils.MakeAssetBundleBuildArray(tb);
-        BuildUtils.BuildBundles(buildArray, targetPath);
+        // Hashtable tb = new Hashtable();
+        // tb["normal_cfg.bundle"] = "GameRes/Config";
+        // AssetBundleBuild[] buildArray = BuildUtils.MakeAssetBundleBuildArray(tb);
+        // BuildUtils.BuildBundles(buildArray, targetPath);
     }
 
     /// <summary>
@@ -81,10 +83,7 @@ public class BuildUtils
         // 创建Lua的Bundle临时目录
         var luabundleDir = BuildUtils.CreateTmpDir("luabundle");
         // 将Lua代码拷贝到Bundle临时目录（做加密处理）
-        var luaFiles = BuildUtils.GetFiles(new string[] {
-            Application.dataPath + "/LuaFramework/Lua",
-            Application.dataPath + "/LuaFramework/ToLua/Lua",
-        }, true);
+        var luaFiles = BuildUtils.GetFiles(new string[] { VinceFramework.AppConst.LuaFileRoot, VinceFramework.AppConst.ToLuaFileRoot }, true);
         BuildUtils.CopyLuaToBundleDir(luaFiles, luabundleDir);
         // 构建AssetBundleBuild列表
         Hashtable tb = new Hashtable();
@@ -104,15 +103,41 @@ public class BuildUtils
     public static void BuildGameResBundle(string targetPath)
     {
         Hashtable tb = new Hashtable();
-        tb["baseres.bundle"] = "GameRes/BaseRes";
-        tb["uiprefabs.bundle"] = "GameRes/UIPrefabs";
-        tb["atlas.bundle"] = "GameRes/Atlas";
-        tb["effects.bundle"] = "GameRes/Effects";
-        tb["3d.bundle"] = "GameRes/3D";
+        tb["Fonts.bundle"] = "Res/Fonts";
+        tb["Prefabs.bundle"] = "Res/Prefabs";
+        tb["Textures.bundle"] = "Res/Textures";
         AssetBundleBuild[] buildArray = MakeAssetBundleBuildArray(tb);
         BuildBundles(buildArray, targetPath);
     }
-
+    
+    /// <summary>
+    /// 打包游戏场景AssetBundle
+    /// </summary>
+    public static void BuildGameSceneBundle(string targetPath)
+    {
+        Hashtable tb = new Hashtable();
+        string[] files = Directory.GetFiles(Application.dataPath+"/"+"Res/Scenes");
+        AssetBundleBuild[] buildArray = new AssetBundleBuild[files.Length];
+        for (int i = 0; i < files.Length; i++)
+        {
+            List<string> fixedFiles = new List<string>();
+            if (files[i].EndsWith(".unity"))
+            {
+                string fullName = files[i].Replace('\\', '/');
+                fixedFiles.Add(fullName);
+                
+                AssetBundleBuild build = new AssetBundleBuild();
+                fullName = fullName.Substring(fullName.LastIndexOf("/")+1);
+                string name = fullName.Substring(0, fullName.IndexOf("."));
+                build.assetBundleName = "scene_" + name.ToLower() + AppConst.ExtName;
+                build.assetNames = fixedFiles.ToArray();
+                buildArray[i] = build;
+                GameLogger.Log(build.assetBundleName+"++++++++++++++++");
+            }
+        }
+        BuildBundles(buildArray, targetPath);
+    }
+    
     /// <summary>
     /// 打AssetBundle
     /// </summary>
@@ -135,14 +160,14 @@ public class BuildUtils
         // 根据你的需求设置各种版本号
         SetAppVersion();
         // 设置APP名称
-        SetAppName("通用游戏框架");
+        SetAppName("VinceFramework");
         // 设置IL2CPP还是Mono
         SetScriptingBackend(false);
         // PC平台的一些设置
-        SetStandalone();
+        // SetStandalone();
         
 
-        string[] scenes = new string[] { "Assets/Scenes/Main.unity" };
+        string[] scenes = new string[] { "Assets/Res/Scenes/Main.unity" };
         string appName = PlayerSettings.productName + "_" + VersionMgr.instance.appVersion + GetTargetPlatfromAppPostfix();
         string outputPath = Application.dataPath + "/../Bin/";
         if (!Directory.Exists(outputPath))
@@ -205,8 +230,6 @@ public class BuildUtils
         PlayerSettings.defaultScreenHeight = 720;
         // 设置后台运行
         PlayerSettings.runInBackground = true;
-        // 启动时不显示分辨率选择提示框（该属性已弃用）
-        // PlayerSettings.displayResolutionDialog = ResolutionDialogSetting.Disabled;
         // 后台可见
         PlayerSettings.visibleInBackground = true;
         // 允许全屏
@@ -229,7 +252,7 @@ public class BuildUtils
         {
             Directory.CreateDirectory(BIN_PATH);
         }
-        using (StreamWriter sw = new StreamWriter(BIN_PATH + "LuaFrameworkFiles_" + VersionMgr.instance.appVersion + ".json"))
+        using (StreamWriter sw = new StreamWriter(BIN_PATH + "VinceFrameworkFiles_" + VersionMgr.instance.appVersion + ".json"))
         {
             sw.Write(jsonStr);
         }
@@ -238,10 +261,7 @@ public class BuildUtils
 
     public static JsonData GetOriginalLuaframeworkMD5Json()
     {
-        var sourceDirs = new string[] {
-            Application.dataPath + "/LuaFramework/Lua",
-            Application.dataPath + "/LuaFramework/ToLua/Lua",
-        };
+        var sourceDirs = new string[] { VinceFramework.AppConst.LuaFileRoot, VinceFramework.AppConst.ToLuaFileRoot };
         JsonData jd = new JsonData();
         foreach (var sourceDir in sourceDirs)
         {
@@ -306,8 +326,8 @@ public class BuildUtils
             if (luaFile.EndsWith(".meta")) continue;
             var luaFileFullPath = Application.dataPath + "/../" + luaFile;
             // 由于Build AssetBundle不识别.lua文件，所以拷贝一份到临时目录，统一加上.bytes结尾
-            var targetFile = luaFile.Replace("Assets/LuaFramework/Lua", "");
-            targetFile = targetFile.Replace("Assets/LuaFramework/ToLua/Lua", "");
+            var targetFile = luaFile.Replace(AppConst.LuaFileRoot, "");
+            targetFile = targetFile.Replace(AppConst.ToLuaFileRoot, "");
             targetFile = luabundleDir + targetFile + ".bytes";
             var targetDir = Path.GetDirectoryName(targetFile);
             if (!Directory.Exists(targetDir))

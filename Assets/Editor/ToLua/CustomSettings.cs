@@ -65,8 +65,7 @@ public static class CustomSettings
         //_GT(typeof(TestExport.Space)),
         //-------------------------------------------------------------------        
         
-               _GT(typeof(Debugger)).SetNameSpace(null),          
-
+        _GT(typeof(Debugger)).SetNameSpace(null),
         _GT(typeof(Camera)).AddExtendType (typeof(ShortcutExtensions)),
         _GT(typeof(Light)).AddExtendType (typeof(ShortcutExtensions)),
         _GT(typeof(LineRenderer)).AddExtendType (typeof(ShortcutExtensions)),
@@ -86,7 +85,7 @@ public static class CustomSettings
         _GT(typeof(Text)).AddExtendType (typeof(DOTweenModuleUI)),
      
 
-        _GT(typeof(AudioSource)).AddExtendType (typeof(DOTweenModuleAudio)),
+        // _GT(typeof(AudioSource)).AddExtendType (typeof(DOTweenModuleAudio)),
         _GT(typeof(Rigidbody)).AddExtendType (typeof(DOTweenModulePhysics)),
         _GT(typeof(Rigidbody2D)).AddExtendType (typeof(DOTweenModulePhysics2D)),
         _GT(typeof(SpriteRenderer)).AddExtendType (typeof(DOTweenModuleSprite)),
@@ -168,7 +167,7 @@ public static class CustomSettings
         _GT(typeof(RuntimeAnimatorController)),
        
 
-        _GT(typeof(MeshRenderer)),
+        // _GT(typeof(MeshRenderer)),
 #if !UNITY_5_4_OR_NEWER
         _GT(typeof(ParticleEmitter)),
         _GT(typeof(ParticleRenderer)),
@@ -196,9 +195,7 @@ public static class CustomSettings
         _GT(typeof(RenderTexture)), 
 		_GT(typeof(Resources)),      
 		_GT(typeof(LuaProfiler)),
-          
-        _GT(typeof(AppConst)),
-        //for LuaFramework
+        
         _GT(typeof(RawImage)),
         _GT(typeof(Color)),
         _GT(typeof(ScreenCapture)),
@@ -213,6 +210,9 @@ public static class CustomSettings
         _GT(typeof(UnityEngine.Random)),
         _GT(typeof(RectTransformUtility)),
         _GT(typeof(TextMesh)),
+        
+        //for VinceFramework
+        _GT(typeof(AppConst)),
 
     };
 

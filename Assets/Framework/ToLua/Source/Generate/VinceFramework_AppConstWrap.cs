@@ -12,8 +12,10 @@ public class VinceFramework_AppConstWrap
 		L.RegConstant("DebugMode", 0);
 		L.RegVar("AppName", get_AppName, null);
 		L.RegVar("LuaDirName", get_LuaDirName, null);
+		L.RegVar("ToLuaDirName", get_ToLuaDirName, null);
 		L.RegVar("FrameworkRoot", get_FrameworkRoot, null);
 		L.RegVar("LuaFileRoot", get_LuaFileRoot, null);
+		L.RegVar("ToLuaFileRoot", get_ToLuaFileRoot, null);
 		L.EndClass();
 	}
 
@@ -70,6 +72,20 @@ public class VinceFramework_AppConstWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_ToLuaDirName(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, VinceFramework.AppConst.ToLuaDirName);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_FrameworkRoot(IntPtr L)
 	{
 		try
@@ -89,6 +105,20 @@ public class VinceFramework_AppConstWrap
 		try
 		{
 			LuaDLL.lua_pushstring(L, VinceFramework.AppConst.LuaFileRoot);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_ToLuaFileRoot(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, VinceFramework.AppConst.ToLuaFileRoot);
 			return 1;
 		}
 		catch (Exception e)
