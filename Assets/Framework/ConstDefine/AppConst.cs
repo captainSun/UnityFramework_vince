@@ -10,6 +10,7 @@ namespace VinceFramework
         public const string AppName = "Framework";                  //应用程序名称
         public const string LuaDirName = "Lua";                      //业务所需Lua文件目录
         public const string ToLuaDirName = "ToLua/Lua";              //ToLua里的lua文件目录
+        public static bool AddBundleBuild = false;                    //增量打包
         // public const int TimerInterval = 1;
         // public const int GameFrameRate = 30;                       //游戏帧频
         //

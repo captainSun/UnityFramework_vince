@@ -54,7 +54,7 @@ public class BuildUtils
         int index = 0;
         foreach (string key in tb.Keys)
         {
-            buildArray[index].assetBundleName = key;
+            buildArray[index].assetBundleName = key + AppConst.ExtName;
             List<string> fileList = new List<string>();
             fileList = GetFiles(Application.dataPath + "/" + tb[key], true);
             buildArray[index].assetNames = fileList.ToArray();
@@ -87,7 +87,7 @@ public class BuildUtils
         BuildUtils.CopyLuaToBundleDir(luaFiles, luabundleDir);
         // 构建AssetBundleBuild列表
         Hashtable tb = new Hashtable();
-        tb["lua.bundle"] = "luabundle";
+        tb["lua"] = "luabundle";
         AssetBundleBuild[] buildArray = MakeAssetBundleBuildArray(tb);
         // 打包AssetBundle
         BuildBundles(buildArray, targetPath);
@@ -100,20 +100,20 @@ public class BuildUtils
     /// <summary>
     /// 打包游戏资源AssetBundle
     /// </summary>
-    public static void BuildGameResBundle(string targetPath)
+    public static void BuildResBundle(string targetPath)
     {
         Hashtable tb = new Hashtable();
-        tb["Fonts.bundle"] = "Res/Fonts";
-        tb["Prefabs.bundle"] = "Res/Prefabs";
-        tb["Textures.bundle"] = "Res/Textures";
+        tb["Fonts"] = "Res/Fonts";
+        tb["Prefabs"] = "Res/Prefabs";
+        tb["Textures"] = "Res/Textures";
         AssetBundleBuild[] buildArray = MakeAssetBundleBuildArray(tb);
         BuildBundles(buildArray, targetPath);
     }
     
     /// <summary>
-    /// 打包游戏场景AssetBundle
+    /// 场景单独打包
     /// </summary>
-    public static void BuildGameSceneBundle(string targetPath)
+    public static void BuildSceneBundle(string targetPath)
     {
         Hashtable tb = new Hashtable();
         string[] files = Directory.GetFiles(Application.dataPath+"/"+"Res/Scenes");
@@ -123,16 +123,20 @@ public class BuildUtils
             List<string> fixedFiles = new List<string>();
             if (files[i].EndsWith(".unity"))
             {
+                //切出场景文件名
                 string fullName = files[i].Replace('\\', '/');
-                fixedFiles.Add(fullName);
-                
-                AssetBundleBuild build = new AssetBundleBuild();
                 fullName = fullName.Substring(fullName.LastIndexOf("/")+1);
                 string name = fullName.Substring(0, fullName.IndexOf("."));
+                //Assets目录为根切出文件目录
+                var index = files[i].IndexOf("Assets");
+                fixedFiles.Add(files[i].Substring(index));
+                
+                AssetBundleBuild build = new AssetBundleBuild();
                 build.assetBundleName = "scene_" + name.ToLower() + AppConst.ExtName;
                 build.assetNames = fixedFiles.ToArray();
+               
                 buildArray[i] = build;
-                GameLogger.Log(build.assetBundleName+"++++++++++++++++");
+                
             }
         }
         BuildBundles(buildArray, targetPath);
@@ -164,7 +168,7 @@ public class BuildUtils
         // 设置IL2CPP还是Mono
         SetScriptingBackend(false);
         // PC平台的一些设置
-        // SetStandalone();
+        SetStandalone();
         
 
         string[] scenes = new string[] { "Assets/Res/Scenes/Main.unity" };
@@ -271,7 +275,7 @@ public class BuildUtils
             {
                 if (!luaFile.EndsWith(".lua")) continue;
 
-                var md5 = VinceFramework.Util.md5file(luaFile);
+                var md5 = Util.md5file(luaFile);
                 var key = luaFile.Substring(luaFile.IndexOf("Assets/"));
                 jd[key] = md5;
             }
@@ -279,7 +283,8 @@ public class BuildUtils
 
         return jd;
     }
-
+    
+    
     /// <summary>
     /// 创建临时目录
     /// </summary>
