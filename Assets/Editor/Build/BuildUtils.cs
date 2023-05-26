@@ -81,9 +81,9 @@ public class BuildUtils
     public static void BuildLuaBundle(string targetPath)
     {
         // 创建Lua的Bundle临时目录
-        var luabundleDir = BuildUtils.CreateTmpDir("luabundle");
+        var luabundleDir = CreateTmpDir("luabundle");
         // 将Lua代码拷贝到Bundle临时目录（做加密处理）
-        var luaFiles = BuildUtils.GetFiles(new string[] { VinceFramework.AppConst.LuaFileRoot, VinceFramework.AppConst.ToLuaFileRoot }, true);
+        var luaFiles = GetFiles(new string[] { VinceFramework.AppConst.LuaFileRoot, VinceFramework.AppConst.ToLuaFileRoot }, true);
         BuildUtils.CopyLuaToBundleDir(luaFiles, luabundleDir);
         // 构建AssetBundleBuild列表
         Hashtable tb = new Hashtable();

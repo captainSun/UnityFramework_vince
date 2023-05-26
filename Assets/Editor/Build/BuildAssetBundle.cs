@@ -17,7 +17,7 @@ public class BuildAssetBundle
         Directory.CreateDirectory(streamingPath);
         AssetDatabase.Refresh();
         
-        string targetPath = Application.streamingAssetsPath + "/res";
+        string targetPath = Application.streamingAssetsPath + "/" + AppConst.AssetBundleDirName;
         BuildUtils.BuildLuaBundle(targetPath);
         BuildUtils.BuildSceneBundle(targetPath);
         BuildUtils.BuildResBundle(targetPath);
