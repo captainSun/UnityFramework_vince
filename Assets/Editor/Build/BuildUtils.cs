@@ -103,9 +103,9 @@ public class BuildUtils
     public static void BuildResBundle(string targetPath)
     {
         Hashtable tb = new Hashtable();
-        tb["Fonts"] = "Res/Fonts";
-        tb["Prefabs"] = "Res/Prefabs";
-        tb["Textures"] = "Res/Textures";
+        tb[AppConst.ResFontDirName] = AppConst.ResDirPath + AppConst.ResFontDirName;
+        tb[AppConst.ResPrefabDirName] = AppConst.ResDirPath + AppConst.ResPrefabDirName;
+        tb[AppConst.ResTexturesDirName] = AppConst.ResDirPath + AppConst.ResTexturesDirName;
         AssetBundleBuild[] buildArray = MakeAssetBundleBuildArray(tb);
         BuildBundles(buildArray, targetPath);
     }

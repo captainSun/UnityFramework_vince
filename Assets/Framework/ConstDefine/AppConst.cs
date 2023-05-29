@@ -6,9 +6,9 @@ namespace VinceFramework
 {
     public class AppConst
     {
-        public static bool DebugMode = false;                        //调试模式-用于内部测试
+        public static bool DebugMode = true;                        //调试模式-用于内部测试
         public static bool AddBundleBuild = false;                   //增量打包
-        public static bool BundleMode = false;                       //AssetBundle模式 
+        public static bool BundleMode = true;                       //AssetBundle模式 
         
         public const string AppName = "Framework";                   //应用程序名称
         public const string LuaDirName = "Lua";                      //业务所需Lua文件夹
@@ -16,8 +16,12 @@ namespace VinceFramework
         public const string AssetBundleDirName = "AssetBundles";     //AssetBundle所在文件夹
         
         public const string ResDirPath = "Res/";                     //资源文件夹目录
+        public const string ResFontDirName = "Fonts";                
+        public const string ResPrefabDirName = "Prefabs";
+        public const string ResTexturesDirName = "Textures";
         
         public const string ExtName = ".unity3d";                   //打包资源扩展名
+        
         
         // public const int TimerInterval = 1;
         // public const int GameFrameRate = 30;                       //游戏帧频

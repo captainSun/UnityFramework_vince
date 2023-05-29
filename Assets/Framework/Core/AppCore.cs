@@ -90,6 +90,8 @@ namespace VinceFramework
         {
             LuaManager luaMgr = AddManager<LuaManager>(ManagerName.Lua);
             luaMgr.StartMain();
+            ResManager resMgr = AddManager<ResManager>(ManagerName.Resource);
+            resMgr.Init();
         }
         
     }

@@ -11,5 +11,8 @@ public class StartUp : MonoBehaviour
     {
         print("Game Start " + Time.realtimeSinceStartup);
         AppCore.Instance.StartUp();   //启动游戏
+
+        ResManager resMgr = AppCore.Instance.GetManager<ResManager>(ManagerName.Resource);
+        GameObject.Instantiate(resMgr.LoadPrefab("TestImage.prefab"));
     }
 }
