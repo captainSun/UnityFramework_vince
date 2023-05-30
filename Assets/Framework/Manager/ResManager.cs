@@ -26,6 +26,7 @@ namespace VinceFramework
         {
             bundles = new Dictionary<string, AssetBundle>();
             string manifestFilePath = AbBasePath + AppConst.AssetBundleDirName;
+            print(manifestFilePath);
             AssetBundle assetBundle = AssetBundle.LoadFromFile(manifestFilePath);
             manifest = assetBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
         }
@@ -38,6 +39,7 @@ namespace VinceFramework
             {
                 if (!bundles.ContainsKey(path))
                 {
+                    print("加载依赖项=======" + path);
                     string fullPath = AbBasePath + path;
                     AssetBundle ab = AssetBundle.LoadFromFile(fullPath);
                     bundles.Add(path, ab);
@@ -47,6 +49,7 @@ namespace VinceFramework
             AssetBundle target;
             if (!bundles.TryGetValue(abName, out target))
             {
+                print("LoadAssetBundle=======" + AbBasePath + abName);
                 target = AssetBundle.LoadFromFile(AbBasePath + abName);
                 bundles.Add(abName, target);
             }
@@ -56,7 +59,7 @@ namespace VinceFramework
         //载入资源
         public T LoadAsset<T>(string assetPath,string abName) where T : UnityEngine.Object
         {
-            if (AppConst.BundleMode == false || Application.isEditor)
+            if (AppConst.BundleMode == false && Application.isEditor)
             {
 #if UNITY_EDITOR
                 return AssetDatabase.LoadAssetAtPath<T>(Application.dataPath + "/" + AppConst.ResDirPath + assetPath);
@@ -74,7 +77,7 @@ namespace VinceFramework
         //加载prefab资源
         public GameObject LoadPrefab(string assetPath)
         {
-            return LoadAsset<GameObject>(assetPath, AppConst.ResPrefabDirName);
+            return LoadAsset<GameObject>(assetPath, AppConst.ResPrefabDirName + AppConst.ExtName);
         }
 
     }

@@ -1,0 +1,84 @@
+ManifestFileVersion: 0
+CRC: 1389343906
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4eeb215f05f81b4f781f9cb219203009
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/luabundle/Assets/Framework/ToLua/Lua/ltn12.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/RaycastHit.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dis_mips.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/socket/http.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/slot.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/protobuf/listener.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/socket/tp.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Bounds.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/System/ValueType.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/protobuf/wire_format.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/bcsave.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/typeof.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Touch.lua.bytes
+- Assets/luabundle/Assets/Lua/Main.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/System/coroutine.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/tolua.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dis_mips64el.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/misc/utf8.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Color.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/protobuf/decoder.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/protobuf/type_checkers.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Plane.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/p.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Vector4.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Time.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Vector3.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Mathf.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dis_arm64.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/System/Timer.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Profiler.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dis_mips64.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/Build.bat.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/mime.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/protobuf/text_format.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/socket/url.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/System/Reflection/BindingFlags.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/list.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dump.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/socket/ftp.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dis_mipsel.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/socket.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Ray.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/System/Injection/LuaInjectionBus.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dis_arm.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/socket/mbox.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/protobuf/containers.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/protobuf/encoder.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/misc/strict.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/protobuf/protobuf.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Vector2.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dis_arm64be.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/System/Injection/InjectionBridgeInfo.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/protobuf/descriptor.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/socket/headers.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/lpeg/re.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/System/Injection/LuaInjectionStation.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/bc.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/socket/smtp.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dis_x64.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dis_ppc.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/v.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/misc/functions.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/Quaternion.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/dis_x86.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/jit/zone.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/event.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/cjson/util.lua.bytes
+- Assets/luabundle/Assets/Framework/ToLua/Lua/UnityEngine/LayerMask.lua.bytes
+Dependencies: []

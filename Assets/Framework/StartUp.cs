@@ -13,6 +13,8 @@ public class StartUp : MonoBehaviour
         AppCore.Instance.StartUp();   //启动游戏
 
         ResManager resMgr = AppCore.Instance.GetManager<ResManager>(ManagerName.Resource);
-        GameObject.Instantiate(resMgr.LoadPrefab("Assets/Res/Prefabs/TestImage.prefab"));
+       
+        GameObject UICanvas = GameObject.Instantiate(resMgr.LoadPrefab("Assets/Res/Prefabs/UICanvas.prefab"));
+        GameObject go = GameObject.Instantiate(resMgr.LoadPrefab("Assets/Res/Prefabs/TestImage.prefab"), UICanvas.transform);
     }
 }
