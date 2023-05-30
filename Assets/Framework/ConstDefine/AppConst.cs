@@ -8,7 +8,7 @@ namespace VinceFramework
     {
         public static bool DebugMode = true;                        //调试模式-用于内部测试
         public static bool AddBundleBuild = false;                   //增量打包
-        public static bool BundleMode = true;                       //AssetBundle模式 
+        public static bool BundleMode = false;                       //AssetBundle模式 
         
         public const string AppName = "Framework";                   //应用程序名称
         public const string LuaDirName = "Lua";                      //业务所需Lua文件夹

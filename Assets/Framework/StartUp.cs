@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using VinceFramework;
 
 public class StartUp : MonoBehaviour
@@ -14,7 +15,9 @@ public class StartUp : MonoBehaviour
 
         ResManager resMgr = AppCore.Instance.GetManager<ResManager>(ManagerName.Resource);
        
-        GameObject UICanvas = GameObject.Instantiate(resMgr.LoadPrefab("Assets/Res/Prefabs/UICanvas.prefab"));
-        GameObject go = GameObject.Instantiate(resMgr.LoadPrefab("Assets/Res/Prefabs/TestImage.prefab"), UICanvas.transform);
+        GameObject UICanvas = Instantiate(resMgr.LoadPrefab("Assets/Res/Prefabs/UICanvas.prefab"));
+        GameObject go = Instantiate(resMgr.LoadPrefab("Assets/Res/Prefabs/TestImage.prefab"), UICanvas.transform);
+        var image = go.GetComponent<Image>();
+        image.sprite = resMgr.LoadSprite("Assets/Res/Textures/equip_1.png");
     }
 }
