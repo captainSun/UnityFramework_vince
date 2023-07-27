@@ -1,4 +1,4 @@
-Shader "Shaders/UI/SpriteOutline"
+Shader "Shaders/UI/SpriteInnerline"
 {
     Properties
     {
@@ -65,16 +65,12 @@ Shader "Shaders/UI/SpriteOutline"
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
  
-				fixed4 leftPixel = tex2D(_MainTex, i.uv + float2(-_MainTex_TexelSize.x, 0));
-				fixed4 upPixel = tex2D(_MainTex, i.uv + float2(0, _MainTex_TexelSize.y));
-				fixed4 rightPixel = tex2D(_MainTex, i.uv + float2(_MainTex_TexelSize.x, 0));
-				fixed4 bottomPixel = tex2D(_MainTex, i.uv + float2(0, -_MainTex_TexelSize.y));
+				fixed leftPixel = tex2D(_MainTex, i.uv + float2(-_MainTex_TexelSize.x, 0) * _OutlineRange).a;
+				fixed upPixel = tex2D(_MainTex, i.uv + float2(0, _MainTex_TexelSize.y) * _OutlineRange).a;
+				fixed rightPixel = tex2D(_MainTex, i.uv + float2(_MainTex_TexelSize.x, 0) * _OutlineRange).a;
+				fixed bottomPixel = tex2D(_MainTex, i.uv + float2(0, -_MainTex_TexelSize.y) * _OutlineRange).a;
  
-				//fixed outline = (1 - leftPixel * upPixel * rightPixel * bottomPixel) * col.a ;
-                fixed4 max_temp = max(leftPixel, upPixel);
-                max_temp = max(max_temp, rightPixel);
-                max_temp = max(max_temp, bottomPixel);
-                fixed outline = max_temp.a ;
+				fixed outline = (1 - leftPixel * upPixel * rightPixel * bottomPixel) * col.a ;
                 return lerp(col, _OutlineColor, outline);
             }
             ENDCG
