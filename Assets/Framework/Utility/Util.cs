@@ -162,7 +162,7 @@ namespace VinceFramework
                 {
                     return Application.streamingAssetsPath + "/";
                 }
-                if (AppConst.DebugMode && Application.isEditor)
+                if (Application.isEditor)
                 {
                     return Application.streamingAssetsPath + "/";
                 }

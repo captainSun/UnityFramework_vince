@@ -9,14 +9,16 @@ public class VinceFramework_AppConstWrap
 		L.BeginClass(typeof(VinceFramework.AppConst), typeof(System.Object));
 		L.RegFunction("New", _CreateVinceFramework_AppConst);
 		L.RegFunction("__tostring", ToLua.op_ToString);
-		L.RegVar("DebugMode", get_DebugMode, set_DebugMode);
-		L.RegVar("AddBundleBuild", get_AddBundleBuild, set_AddBundleBuild);
 		L.RegVar("BundleMode", get_BundleMode, set_BundleMode);
+		L.RegVar("AddBundleBuild", get_AddBundleBuild, set_AddBundleBuild);
 		L.RegVar("AppName", get_AppName, null);
 		L.RegVar("LuaDirName", get_LuaDirName, null);
 		L.RegVar("ToLuaDirName", get_ToLuaDirName, null);
 		L.RegVar("AssetBundleDirName", get_AssetBundleDirName, null);
 		L.RegVar("ResDirPath", get_ResDirPath, null);
+		L.RegVar("ResFontDirName", get_ResFontDirName, null);
+		L.RegVar("ResPrefabDirName", get_ResPrefabDirName, null);
+		L.RegVar("ResTexturesDirName", get_ResTexturesDirName, null);
 		L.RegVar("ExtName", get_ExtName, null);
 		L.RegVar("FrameworkRoot", get_FrameworkRoot, null);
 		L.RegVar("LuaFileRoot", get_LuaFileRoot, null);
@@ -49,11 +51,11 @@ public class VinceFramework_AppConstWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_DebugMode(IntPtr L)
+	static int get_BundleMode(IntPtr L)
 	{
 		try
 		{
-			LuaDLL.lua_pushboolean(L, VinceFramework.AppConst.DebugMode);
+			LuaDLL.lua_pushboolean(L, VinceFramework.AppConst.BundleMode);
 			return 1;
 		}
 		catch (Exception e)
@@ -68,20 +70,6 @@ public class VinceFramework_AppConstWrap
 		try
 		{
 			LuaDLL.lua_pushboolean(L, VinceFramework.AppConst.AddBundleBuild);
-			return 1;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_BundleMode(IntPtr L)
-	{
-		try
-		{
-			LuaDLL.lua_pushboolean(L, VinceFramework.AppConst.BundleMode);
 			return 1;
 		}
 		catch (Exception e)
@@ -161,6 +149,48 @@ public class VinceFramework_AppConstWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_ResFontDirName(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, VinceFramework.AppConst.ResFontDirName);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_ResPrefabDirName(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, VinceFramework.AppConst.ResPrefabDirName);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_ResTexturesDirName(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, VinceFramework.AppConst.ResTexturesDirName);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_ExtName(IntPtr L)
 	{
 		try
@@ -217,12 +247,12 @@ public class VinceFramework_AppConstWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_DebugMode(IntPtr L)
+	static int set_BundleMode(IntPtr L)
 	{
 		try
 		{
 			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
-			VinceFramework.AppConst.DebugMode = arg0;
+			VinceFramework.AppConst.BundleMode = arg0;
 			return 0;
 		}
 		catch (Exception e)
@@ -238,21 +268,6 @@ public class VinceFramework_AppConstWrap
 		{
 			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
 			VinceFramework.AppConst.AddBundleBuild = arg0;
-			return 0;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_BundleMode(IntPtr L)
-	{
-		try
-		{
-			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
-			VinceFramework.AppConst.BundleMode = arg0;
 			return 0;
 		}
 		catch (Exception e)

@@ -15,9 +15,9 @@ public class StartUp : MonoBehaviour
 
         ResManager resMgr = AppCore.Instance.GetManager<ResManager>(ManagerName.Resource);
        
-        GameObject UICanvas = Instantiate(resMgr.LoadPrefab("Assets/Res/Prefabs/UICanvas.prefab"));
-        GameObject go = Instantiate(resMgr.LoadPrefab("Assets/Res/Prefabs/TestImage.prefab"), UICanvas.transform);
+        GameObject UICanvas = Instantiate(resMgr.LoadPrefab("Res/Prefabs/UICanvas.prefab"));
+        GameObject go = Instantiate(resMgr.LoadPrefab("Res/Prefabs/TestImage.prefab"), UICanvas.transform);
         var image = go.GetComponent<Image>();
-        image.sprite = resMgr.LoadSprite("Assets/Res/Textures/equip_1.png");
+        image.sprite = resMgr.LoadSprite("Res/Textures/equip_1.png");
     }
 }

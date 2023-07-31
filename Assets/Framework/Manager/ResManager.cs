@@ -62,7 +62,7 @@ namespace VinceFramework
             {
 #if UNITY_EDITOR
                 
-                return AssetDatabase.LoadAssetAtPath<T>(assetPath);
+                return AssetDatabase.LoadAssetAtPath<T>("Assets/" + assetPath);
 #else
                 return null;
 #endif
@@ -70,7 +70,7 @@ namespace VinceFramework
             else
             {
                 AssetBundle ab = LoadAssetBundle(abName);
-                return ab.LoadAsset<T>(assetPath);
+                return ab.LoadAsset<T>("Assets/" + assetPath);
             }
         }
 
