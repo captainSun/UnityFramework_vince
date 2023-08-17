@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using VinceFramework;
@@ -19,5 +17,12 @@ public class StartUp : MonoBehaviour
         GameObject go = Instantiate(resMgr.LoadPrefab("Res/Prefabs/TestImage.prefab"), UICanvas.transform);
         var image = go.GetComponent<Image>();
         image.sprite = resMgr.LoadSprite("Res/Textures/equip_1.png");
+    }
+    
+    [MenuItem("VinceSettings/DeveloperMode")]
+    static void ActiveDeveloperMode()
+    {
+        bool flag = EditorPrefs.GetBool("DeveloperMode");
+        EditorPrefs.SetBool("DeveloperMode", !flag);
     }
 }
