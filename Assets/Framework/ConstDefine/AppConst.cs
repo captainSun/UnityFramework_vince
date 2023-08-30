@@ -18,6 +18,7 @@ namespace VinceFramework
         public const string ResFontDirName = "Fonts";                
         public const string ResPrefabDirName = "Prefabs";
         public const string ResTexturesDirName = "Textures";
+        public const string ResMaterialDirName = "Materials";
         
         public const string ExtName = ".unity3d";                   //打包资源扩展名
         

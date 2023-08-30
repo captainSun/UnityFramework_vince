@@ -49,16 +49,16 @@ Shader "Shaders/UI/SpriteOutline"
            
 			fixed4 _OutlineColor;
             float _OutlineRange;
+            
              v2f vert (appdata v)
             {
-               v2f OUT;
+             	v2f OUT;
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(OUT);
                 OUT.worldPosition = v.vertex;
                 OUT.vertex = UnityObjectToClipPos(OUT.worldPosition);
-
                 OUT.uv = v.uv;
-
+             	// OUT.normal = v.normal;
                 OUT.color = v.color * _Color;
                 return OUT;
             }
@@ -66,10 +66,10 @@ Shader "Shaders/UI/SpriteOutline"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-				float3 normal = normalize(i.normal);
-				float3 viewDir = normalize(UnityWorldSpaceViewDir(i.worldPosition));
-
-				float ndotv = max(pow(-dot(normal, viewDir),_OutlineRange), 0.001);
+				// float3 normal = normalize(i.normal);
+				// float3 viewDir = normalize(UnityWorldSpaceViewDir(i.worldPosition));
+				//
+				// float ndotv = max(pow(-dot(normal, viewDir),_OutlineRange), 0.001);
 
 				fixed4 leftPixel = tex2D(_MainTex, i.uv + float2(-_MainTex_TexelSize.x, 0));
 				fixed4 upPixel = tex2D(_MainTex, i.uv + float2(0, _MainTex_TexelSize.y));
@@ -77,8 +77,8 @@ Shader "Shaders/UI/SpriteOutline"
 				fixed4 bottomPixel = tex2D(_MainTex, i.uv + float2(0, -_MainTex_TexelSize.y));
             	
 				
-				//fixed outline = (1 - leftPixel * upPixel * rightPixel * bottomPixel) * col.a ;
-                fixed outline = max(max(leftPixel, upPixel), max(rightPixel, bottomPixel)).a - col.a;
+				fixed outline = (1 - leftPixel * upPixel * rightPixel * bottomPixel) * col.a ;
+                //fixed outline = max(max(leftPixel, upPixel), max(rightPixel, bottomPixel)).a - col.a;
             	
                 return lerp(col, _OutlineColor, outline);
             }

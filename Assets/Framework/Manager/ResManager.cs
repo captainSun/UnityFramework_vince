@@ -92,5 +92,11 @@ namespace VinceFramework
             return LoadAsset<Texture>(assetPath, AppConst.ResTexturesDirName + AppConst.ExtName);
         }
 
+        
+        //加载Material资源
+        public Material LoadMaterial(string assetPath)
+        {
+            return LoadAsset<Material>(assetPath, AppConst.ResMaterialDirName + AppConst.ExtName);
+        }
     }
 }
