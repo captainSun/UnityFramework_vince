@@ -10,10 +10,8 @@ public class StartUp : MonoBehaviour
     {
         print("Game Start " + Time.realtimeSinceStartup);
         AppCore.Instance.StartUp();   //启动游戏
-
-        // ResManager resMgr = AppCore.Instance.GetManager<ResManager>(ManagerName.Resource);
-        //
-        // GameObject UICanvas = Instantiate(resMgr.LoadPrefab("Res/Prefabs/UICanvas.prefab"));
+        
+        GameObject UICanvas = Instantiate(AppCore.Instance.resMgr.LoadPrefab("Res/Prefabs/UICanvas.prefab"));
         // GameObject go = Instantiate(resMgr.LoadPrefab("Res/Prefabs/TestImage.prefab"), UICanvas.transform);
         // var image = go.GetComponent<Image>();
         // image.sprite = resMgr.LoadSprite("Res/Textures/equip_1.png");

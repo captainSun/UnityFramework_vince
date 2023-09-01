@@ -1,4 +1,4 @@
-Shader "Shaders/Effect/MotionBlurShader"
+Shader "Shaders/Model/MotionBlurShader"
 {
     Properties
     {

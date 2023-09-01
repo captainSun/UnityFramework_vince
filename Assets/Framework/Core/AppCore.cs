@@ -39,7 +39,10 @@ namespace VinceFramework
                 return m_GameManager;
             }
         }
-        
+
+        public LuaManager luaMgr;
+        public ResManager resMgr;
+
         /// <summary>
         /// 添加管理器
         /// </summary>
@@ -88,9 +91,9 @@ namespace VinceFramework
         /// </summary>
         public void StartUp()
         {
-            LuaManager luaMgr = AddManager<LuaManager>(ManagerName.Lua);
+            luaMgr = AddManager<LuaManager>(ManagerName.Lua);
             luaMgr.StartMain();
-            ResManager resMgr = AddManager<ResManager>(ManagerName.Resource);
+            resMgr = AddManager<ResManager>(ManagerName.Resource);
             resMgr.Init();
         }
         
