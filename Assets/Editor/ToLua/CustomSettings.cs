@@ -213,6 +213,8 @@ public static class CustomSettings
         
         //for VinceFramework
         _GT(typeof(AppConst)),
+        _GT(typeof(ResManager)),
+        _GT(typeof(LuaHelper)),
 
     };
 
