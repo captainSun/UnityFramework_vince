@@ -91,10 +91,13 @@ namespace VinceFramework
         /// </summary>
         public void StartUp()
         {
+            //初始化管理器
             luaMgr = AddManager<LuaManager>(ManagerName.Lua);
-            luaMgr.StartMain();
             resMgr = AddManager<ResManager>(ManagerName.Resource);
+            
             resMgr.Init();
+            luaMgr.StartMain();
+           
         }
         
     }
