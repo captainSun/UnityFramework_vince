@@ -97,7 +97,9 @@ namespace VinceFramework
             
             resMgr.Init();
             luaMgr.StartMain();
-           
+            Common.luaMgr = luaMgr;
+            Common.resMgr = resMgr;
+
         }
         
     }

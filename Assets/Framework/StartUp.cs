@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using VinceFramework;
+using Logger = VinceFramework.Logger;
 
 public class StartUp : MonoBehaviour
 {
@@ -9,12 +10,10 @@ public class StartUp : MonoBehaviour
     private void Start()
     {
         print("Game Start " + Time.realtimeSinceStartup);
-        AppCore.Instance.StartUp();   //启动游戏
-        
-        //GameObject UICanvas = Instantiate(AppCore.Instance.resMgr.LoadPrefab("Res/Prefabs/UICanvas.prefab"));
-        // GameObject go = Instantiate(resMgr.LoadPrefab("Res/Prefabs/TestImage.prefab"), UICanvas.transform);
-        // var image = go.GetComponent<Image>();
-        // image.sprite = resMgr.LoadSprite("Res/Textures/equip_1.png");
+        AppCore.Instance.StartUp();  
+        TimeUtil.Initialize();
+        Logger.Initialize();
+        Common.looper = AppCore.Instance.AppGameManager.AddComponent<Looper>();
     }
     
     [MenuItem("VinceSettings/DeveloperMode")]
