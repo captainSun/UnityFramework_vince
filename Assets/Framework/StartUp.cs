@@ -16,10 +16,10 @@ public class StartUp : MonoBehaviour
         Common.looper = AppCore.Instance.AppGameManager.AddComponent<Looper>();
     }
     
-    [MenuItem("VinceSettings/DeveloperMode")]
-    static void ActiveDeveloperMode()
-    {
-        bool flag = EditorPrefs.GetBool("DeveloperMode");
-        EditorPrefs.SetBool("DeveloperMode", !flag);
-    }
+    // [MenuItem("VinceSettings/DeveloperMode")]
+    // static void ActiveDeveloperMode()
+    // {
+    //     bool flag = EditorPrefs.GetBool("DeveloperMode");
+    //     EditorPrefs.SetBool("DeveloperMode", !flag);
+    // }
 }

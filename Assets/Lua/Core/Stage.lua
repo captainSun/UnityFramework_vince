@@ -25,7 +25,7 @@ function Stage._loopHandler(type, time)
     --end
 
     ---派发lua层事件
-    print("TimeUtil.time", TimeUtil.time)
+    print("TimeUtil.time", type, TimeUtil.time)
 end
 
 return Stage

@@ -28,7 +28,7 @@ namespace VinceFramework
             // state.AddSearchPath(AppConst.LuaFileRoot);
             state.Start();
             DoFile("Main.lua");
-            StartLooper();
+            // StartLooper();
         }
         
         /// <summary>

@@ -37,11 +37,7 @@ namespace VinceFramework
         private void DispatchLuaEvent(string type)
         {
             if (m_dispatchEvent == null) return;
-            m_dispatchEvent.BeginPCall();
-            m_dispatchEvent.Push(type);
-            m_dispatchEvent.Push(TimeUtil.timeSec);
-            m_dispatchEvent.PCall();
-            m_dispatchEvent.EndPCall();
+            m_dispatchEvent.Call(type, TimeUtil.timeSec);
         }
 
 

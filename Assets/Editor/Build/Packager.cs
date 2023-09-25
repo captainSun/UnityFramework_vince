@@ -86,7 +86,7 @@ public class Packager {
         string rootPath = Application.dataPath + "/Res";
         HandlerScenes();
         HandleDeeperDirectory(rootPath, rootPath);
-        string resPath = "Assets/" + Application.streamingAssetsPath;
+        string resPath = Application.streamingAssetsPath;
         BuildPipeline.BuildAssetBundles(resPath, maps.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, target);
         BuildFileIndex();
 

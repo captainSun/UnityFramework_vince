@@ -4,9 +4,8 @@
 --- DateTime: 2023/9/6 14:27
 --- 全局函数
 
+
 --- 实现 lua class
---- 调用父类方法 Class.super.Fn(self, ...)
----    不要使用 Class.super:Fn(...) 调用
 ---@param className string @ 类名称
 ---@param superClass table @ -可选- 父类（不能继承 native class）
 ---@return table
