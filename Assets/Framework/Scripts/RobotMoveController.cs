@@ -13,7 +13,7 @@ namespace Framework.Scripts
         {
             Idle,
             Walking,
-            Running
+            Running,
         }
 
         MovementState currentState = MovementState.Idle;
@@ -54,23 +54,50 @@ namespace Framework.Scripts
                     animator.SetBool("playRunning", true);
                     break;
             }
-            
-            // 根据输入计算移动
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
-            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
-            float speed = currentState == MovementState.Walking ? walkSpeed : runSpeed;
-            transform.Translate(movement * Time.deltaTime * speed);
-            //
-            // 计算移动方向并调整角色的朝向
-            if (movement.magnitude > 0)
+
+            if (currentState != MovementState.Idle)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(transform.TransformDirection(movement));
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                // // 根据输入计算移动
+                // float moveHorizontal = Input.GetAxis("Horizontal");
+                // float moveVertical = Input.GetAxis("Vertical");
+                // Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
+                // float speed = currentState == MovementState.Walking ? walkSpeed : runSpeed;
+                // transform.Translate(movement * Time.deltaTime * speed);
+                // //
+                // // 计算移动方向并调整角色的朝向
+                // if (movement.magnitude > 0)
+                // {
+                //     Quaternion targetRotation = Quaternion.LookRotation(transform.TransformDirection(movement));
+                //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                // }
+                Vector2 direction = Vector2.zero;
+                if (Input.GetKey(KeyCode.W))
+                {
+                    direction = new Vector2(0, 1);
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    direction = new Vector2(0, -1);
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    direction = new Vector2(1, 0);
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    direction = new Vector2(-1, 0);
+                }
+                
+                float speed = currentState == MovementState.Walking ? walkSpeed : runSpeed; //移动速度
+                Vector3 pos = transform.position; //当前位置
+                pos.x += (speed * direction.x * Time.deltaTime);
+                pos.z += (speed * direction.y * Time.deltaTime);
+
+                transform.LookAt(pos);
+                transform.position = pos;
+                
             }
-            
-           
-            
+
         }
         
     }
