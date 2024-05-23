@@ -32,7 +32,9 @@ Shader "Shaders/Model/Outline"
             struct v2f
             {
                 float4 pos : SV_POSITION;
+                // float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
+                
             };
 
             sampler2D _MainTex;
@@ -41,11 +43,11 @@ Shader "Shaders/Model/Outline"
             v2f vert (appdata v)
             {
                 //实现方式1
-                // v2f o;
-                // v.vertex.xyz *= _OutlineFactor;
-                // o.vertex = UnityObjectToClipPos(v.vertex);
-                // o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                // return o;
+                 // v2f o;
+                 // v.vertex.xyz *= _OutlineFactor;
+                 // o.vertex = UnityObjectToClipPos(v.vertex);
+                 // o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                 // return o;
 
                 //实现方式2
                 v2f o;
@@ -59,7 +61,7 @@ Shader "Shaders/Model/Outline"
                 pos = pos + float4(normalize(normal), 0) * _OutlineFactor;
                 // 将顶点坐标从观察空间变换到裁剪空间
                 o.pos = mul(UNITY_MATRIX_P, pos);
-
+                
                 return o;
             }
 
