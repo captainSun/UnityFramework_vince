@@ -3,8 +3,8 @@ Shader "Shaders/Model/Outline"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _OutlineCol("OutlineCol", Color) = (1,0,0,1)  
-        _OutlineFactor("OutlineFactor", Range(0,0.1)) = 0.01  
+        _OutlineCol("OutlineCol", Color) = (0,0,0,1)  
+        _OutlineFactor("OutlineFactor", Range(0,0.015)) = 0.008
     }
     SubShader
     {
