@@ -60,41 +60,19 @@ namespace Framework.Scripts
 
             if (currentState != MovementState.Idle)
             {
-                //使用CharacterController组件移动
-                float v = Input.GetAxis("Vertical");
                 float h = Input.GetAxis("Horizontal");
-                Vector3 dir = Vector3.right * h + Vector3.forward * v;
-                float speed = currentState == MovementState.Walking ? walkSpeed : runSpeed; //移动速度
-                dir = dir.normalized; // 归一化移动方向，避免斜向移动速度过快
-                cc.Move(dir * Time.deltaTime * speed);
-                transform.rotation = Quaternion.LookRotation(new Vector3(h,0f,v));
+                float v = Input.GetAxis("Vertical");
+               
+                Quaternion CameraForward = Quaternion.Euler(0,Camera.main.transform.localRotation.eulerAngles.y,0);//相机正方向角度
+                Vector3 inputDir = new Vector3(h, 0, v);// 输入的向量
+                Vector3 targetDir = CameraForward * inputDir;// 移动方向
+                float moveSpeed = currentState == MovementState.Walking ? walkSpeed : runSpeed; //移动速度
+                Vector3 turnForward = Vector3.RotateTowards(transform.forward, targetDir, moveSpeed * Time.deltaTime, 0f);//转向角度
                 
-                // Vector2 direction = Vector2.zero; //移动方向
-                // if (Input.GetKey(KeyCode.W))
-                // {
-                //     direction += new Vector2(0, 1);
-                // }
-                // if (Input.GetKey(KeyCode.S))
-                // {
-                //     direction += new Vector2(0, -1);
-                // }
-                // if (Input.GetKey(KeyCode.D))
-                // {
-                //     direction += new Vector2(1, 0);
-                // }
-                // if (Input.GetKey(KeyCode.A))
-                // {
-                //     direction += new Vector2(-1, 0);
-                // }
-                //
-                // float speed = currentState == MovementState.Walking ? walkSpeed : runSpeed; //移动速度
-                // Vector3 pos = transform.position; //当前位置
-                // pos.x += (speed * direction.x * Time.deltaTime);
-                // pos.z += (speed * direction.y * Time.deltaTime);
-                //
-                // transform.LookAt(pos);
-                // transform.position = pos;
-                
+                cc.Move(targetDir * moveSpeed * Time.deltaTime);
+                transform.Translate(targetDir * Time.deltaTime * moveSpeed,Space.World);
+                transform.rotation = Quaternion.LookRotation(turnForward);
+
             }
 
         }
